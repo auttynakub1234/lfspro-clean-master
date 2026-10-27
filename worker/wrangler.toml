@@ -1,0 +1,7 @@
+name = "lfspro-master-portal"
+main = "src/index.js"
+compatibility_date = "2024-04-01"
+
+[[kv_namespaces]]
+binding = "LFSPRO_DATA"
+id = "0f361a9e172e47a9b067d48b1841fc07"

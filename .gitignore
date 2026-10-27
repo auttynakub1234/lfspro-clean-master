@@ -1,0 +1,15 @@
+# Local databases
+*.db
+portal.db
+web/portal.db
+
+# Build artifacts & temp files
+*.pdb
+*.tmp
+.DS_Store
+
+# Cloudflare & Node
+node_modules/
+.wrangler/
+.env
+.dev.vars

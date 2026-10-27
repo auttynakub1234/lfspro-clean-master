@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LFSPro Master Portal - Live for Speed Network</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Glow FX -->
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-badge">PRO</span>
+        <span class="brand-title">LFSPRO <span class="brand-sub">NETWORK</span></span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#dashboard" class="nav-item active" data-tab="dashboard">Dashboard</a>
+        <a href="#servers" class="nav-item" data-tab="servers">Live Servers</a>
+        <a href="#skins" class="nav-item" data-tab="skins">Skin Database</a>
+        <a href="#account" class="nav-item" data-tab="account">Driver Account</a>
+        <a href="#docs" class="nav-item" data-tab="docs">Master Architecture</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="server-status-pill">
+          <span class="pulse-dot"></span>
+          <span id="nav-status-text">MASTER ONLINE</span>
+        </div>
+        <div id="nav-user-area">
+          <button class="btn btn-primary btn-sm" id="btn-open-auth">Driver Login</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="main-content">
+    
+    <!-- Hero / Master Banner -->
+    <section class="hero-section">
+      <div class="hero-badge">OFFICIAL LFSPRO S3 EMULATION ENGINE v5.0</div>
+      <h1 class="hero-title">LIVE FOR SPEED <span class="highlight-cyan">MASTER REBORN</span></h1>
+      <p class="hero-subtitle">High-performance standalone master server, memory patcher & community portal. Zero domain dependency, full 0.6V S3 car & track unlock.</p>
+      
+      <div class="hero-actions">
+        <a href="/download/launcher" class="btn btn-cyan btn-lg">
+          <span class="icon">⬇️</span> Download Clean Launcher (31 KB)
+        </a>
+        <a href="#servers" class="btn btn-outline btn-lg" onclick="switchTab('servers')">
+          <span class="icon">🏁</span> Browse Live Servers
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Master Status</div>
+          <div class="metric-value text-green" id="metric-status">ONLINE</div>
+          <div class="metric-meta">Port 29339 (TCP)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Active Drivers</div>
+          <div class="metric-value text-cyan" id="metric-drivers">--</div>
+          <div class="metric-meta">Registered Accounts</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Live Servers</div>
+          <div class="metric-value text-orange" id="metric-servers">--</div>
+          <div class="metric-meta">Cruise & Drift</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Players Online</div>
+          <div class="metric-value text-yellow" id="metric-players">--</div>
+          <div class="metric-meta">Across InSim Rooms</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">License Unlock</div>
+          <div class="metric-value text-purple">S3 FULL</div>
+          <div class="metric-meta">All 20 Cars & Tracks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: DASHBOARD -->
+    <section id="tab-dashboard" class="tab-pane active">
+      <div class="dashboard-grid">
+        <!-- Quick Server Preview -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2>🔥 Featured Cruise & Drift Servers</h2>
+            <button class="btn btn-link btn-sm" onclick="switchTab('servers')">View All Servers →</button>
+          </div>
+          <div class="panel-body" id="featured-servers-list">
+            <div class="loading-spinner">Loading servers...</div>
+          </div>
+        </div>
+
+        <!-- Quick Start Guide -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2>🚀 3-Step Quick Start</h2>
+          </div>
+          <div class="panel-body">
+            <div class="step-card">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Download ProLightClean.exe</h4>
+                <p>Ultra-compact launcher (only 31 KB) built in pure C# with direct PBKDF2/AES-256 auth.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Launch & Authenticate</h4>
+                <p>Run the launcher, select your <code>LFS.exe</code> (0.6V) folder, enter your Driver credentials, and click Launch.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Play S3 Multiplayer</h4>
+                <p>The Master Bridge intercepts TCP 29339 instantly unlocking full S3 license, InSim cruise physics, and tweak mods.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: LIVE SERVERS -->
+    <section id="tab-servers" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>🌐 Live Multiplayer Server Browser</h2>
+          <p class="section-desc">Active LFS 0.6V InSim servers running Cruise, Drift, Drag and Dyno events.</p>
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All Servers</button>
+          <button class="filter-btn" data-filter="Cruise">Cruise</button>
+          <button class="filter-btn" data-filter="Drift">Drift</button>
+          <button class="filter-btn" data-filter="Lab">Dyno / Tuning</button>
+        </div>
+      </div>
+
+      <div class="servers-table-container">
+        <table class="servers-table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Server Name</th>
+              <th>Game Mode</th>
+              <th>Track</th>
+              <th>Allowed Cars</th>
+              <th>Drivers</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="servers-table-body">
+            <tr><td colspan="7" class="text-center">Loading server network...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: SKINS DATABASE -->
+    <section id="tab-skins" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>🎨 Community Skin Livery Database</h2>
+          <p class="section-desc">Custom high-resolution liveries for LFS vehicles. Directly synchronized with in-game texture downloader.</p>
+        </div>
+        <div class="filter-group" id="skin-car-filters">
+          <button class="filter-btn active" data-car="all">All Cars</button>
+          <button class="filter-btn" data-car="XRT">XRT</button>
+          <button class="filter-btn" data-car="RB4">RB4</button>
+          <button class="filter-btn" data-car="FXO">FXO</button>
+          <button class="filter-btn" data-car="FZR">FZR</button>
+          <button class="filter-btn" data-car="RAC">RAC</button>
+          <button class="filter-btn" data-car="XFR">XFR</button>
+        </div>
+      </div>
+
+      <div class="skins-grid" id="skins-grid-container">
+        <div class="loading-spinner">Loading liveries...</div>
+      </div>
+    </section>
+
+    <!-- TAB 4: DRIVER ACCOUNT & HWID -->
+    <section id="tab-account" class="tab-pane">
+      <div class="account-container">
+        
+        <!-- Not Logged In View -->
+        <div id="account-guest-view" class="account-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>🔑 Driver Sign In</h2>
+            </div>
+            <div class="panel-body">
+              <form id="form-login" onsubmit="handleLoginSubmit(event)">
+                <div class="form-group">
+                  <label for="login-username">Driver Username</label>
+                  <input type="text" id="login-username" class="form-control" placeholder="e.g. pilot01" required>
+                </div>
+                <div class="form-group">
+                  <label for="login-password">Password</label>
+                  <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                <div id="login-msg" class="form-msg"></div>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2>📝 Register New Driver</h2>
+            </div>
+            <div class="panel-body">
+              <form id="form-register" onsubmit="handleRegisterSubmit(event)">
+                <div class="form-group">
+                  <label for="reg-username">Choose Username</label>
+                  <input type="text" id="reg-username" class="form-control" placeholder="Min 3 characters" required>
+                </div>
+                <div class="form-group">
+                  <label for="reg-password">Choose Password</label>
+                  <input type="password" id="reg-password" class="form-control" placeholder="Min 4 characters" required>
+                </div>
+                <div class="form-group">
+                  <label>Initial License</label>
+                  <input type="text" class="form-control" value="S3 Full Access (Free)" disabled>
+                </div>
+                <button type="submit" class="btn btn-cyan btn-block">Create Account</button>
+                <div id="reg-msg" class="form-msg"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logged In View -->
+        <div id="account-user-view" class="account-card" style="display:none;">
+          <div class="user-header">
+            <div class="user-avatar" id="view-avatar">🏎️</div>
+            <div>
+              <h2 id="view-username">Driver</h2>
+              <div class="user-badges">
+                <span class="badge badge-rank" id="view-rank">Driver</span>
+                <span class="badge badge-license" id="view-license">S3 License</span>
+                <span class="badge badge-credits" id="view-credits">1,000 Credits</span>
+              </div>
+            </div>
+            <button class="btn btn-outline btn-sm ml-auto" onclick="handleLogout()">Sign Out</button>
+          </div>
+
+          <div class="user-body">
+            <div class="hwid-status-panel">
+              <div class="hwid-info">
+                <h3>🔒 Hardware ID (HWID) Security</h3>
+                <p>Your driver account is cryptographically bound to your machine hardware fingerprint (Motherboard + BIOS UUID + HDD Serial + MAC) to preserve server integrity.</p>
+                <div class="hwid-bound-badge" id="view-hwid-status">HWID Status: Checking...</div>
+              </div>
+              <div class="hwid-action">
+                <button class="btn btn-orange" onclick="handleHwidReset()">🔄 Reset HWID Fingerprint</button>
+                <p class="text-muted text-sm mt-1">Use this if you replaced computer parts or formatted Windows.</p>
+              </div>
+            </div>
+            <div id="hwid-msg" class="form-msg"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 5: MASTER ARCHITECTURE -->
+    <section id="tab-docs" class="tab-pane">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>⚙️ LFSPro Clean Master Architecture</h2>
+        </div>
+        <div class="panel-body docs-body">
+          <p>This master network completely eliminates any hardcoded domain lookup or external web dependencies, running natively on your local environment or custom VPS.</p>
+
+          <div class="docs-grid">
+            <div class="doc-item">
+              <h3>🔌 Master Bridge (TCP 29339)</h3>
+              <p>LFS game client sends <strong>Scrutineer Type 4</strong> and <strong>JRA packets</strong> to port 29339. The bridge responds with a 100-byte unlock packet containing <code>connId</code>, <code>status=0</code>, <code>license=3</code>, and string <code>"S3"</code> at offset 0x60, triggering instant full game unlock.</p>
+            </div>
+            <div class="doc-item">
+              <h3>🔐 PBKDF2 + AES-256 Auth</h3>
+              <p>The launcher encrypts <code>username|password_hash|hdd|mb|mac|bios</code> using RFC 2898 PBKDF2 (100,000 iterations, master key <code>config.sys.input=UTF8</code>) and AES-256-CBC, communicating with <code>/api.php</code>.</p>
+            </div>
+            <div class="doc-item">
+              <h3>🧠 In-Memory Engine Patching</h3>
+              <p>Upon launching <code>LFS.exe</code>, the clean launcher checks byte 17-18 of <code>0x1C830C</code> for <code>"6V"</code>, replaces master buffers at <code>0x1C890C</code> and skins at <code>0x1C6CD4</code>, and injects driver identity to <code>0x5B0AA4</code>.</p>
+            </div>
+            <div class="doc-item">
+              <h3>📦 Single Executable Lightweight</h3>
+              <p>The entire client launcher was reduced from <strong>143 MB</strong> to just <strong>31 KB</strong> with zero external runtime dependencies outside the standard .NET / Mono runtime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>LFSPro Clean Master Portal & API Server • Live for Speed 0.6V Emulation Engine</p>
+      <p class="text-muted">Built for high performance, local testing, and community hosting.</p>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
